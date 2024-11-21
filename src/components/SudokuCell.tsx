@@ -26,9 +26,18 @@ const SudokuCell: React.FC<SudokuCellProps> = ({
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value === '' ? 0 : parseInt(e.target.value.slice(-1), 10);
-    if (onChange && (newValue >= 0 && newValue <= 9)) {
+    const inputValue = e.target.value;
+    const lastChar = inputValue.slice(-1);
+    const newValue = inputValue === '' ? 0 : parseInt(lastChar, 10);
+    
+    if (onChange && !isNaN(newValue) && newValue >= 0 && newValue <= 9) {
       onChange(newValue);
+      // Reset the input value to ensure consistent behavior
+      if (newValue === 0) {
+        e.target.value = '';
+      } else {
+        e.target.value = newValue.toString();
+      }
     }
   };
   const getBackgroundColor = () => {

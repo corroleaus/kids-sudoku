@@ -20,6 +20,7 @@ const SudokuGrid: React.FC<SudokuGridProps> = ({
   isChecking,
   validCells,
   onCellClick,
+  onCellChange,
 }) => {
   return (
     <div className="grid grid-cols-9 gap-0 border-2 border-gray-800">
@@ -55,7 +56,11 @@ const SudokuGrid: React.FC<SudokuGridProps> = ({
                   isChecking={isChecking}
                   isValid={validCells[rowIndex][colIndex]}
                   onClick={() => onCellClick(rowIndex, colIndex)}
-                  onChange={(value) => onCellChange?.(rowIndex, colIndex, value)}
+                  onChange={(value) => {
+                    if (onCellChange) {
+                      onCellChange(rowIndex, colIndex, value);
+                    }
+                  }}
                 />
               )}
             </div>
