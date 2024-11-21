@@ -99,6 +99,21 @@ export const isSolved = (grid: number[][]): boolean => {
   return true;
 };
 
+export const isBoxComplete = (grid: number[][], boxRow: number, boxCol: number): boolean => {
+  const numbers = new Set<number>();
+  
+  // Check if box has all numbers 1-9
+  for (let y = boxRow; y < boxRow + 3; y++) {
+    for (let x = boxCol; x < boxCol + 3; x++) {
+      const value = grid[y][x];
+      if (value === 0) return false;
+      numbers.add(value);
+    }
+  }
+  
+  return numbers.size === 9 && validateCell(grid, boxRow, boxCol);
+};
+
 export const validateCell = (grid: number[][], row: number, col: number): boolean => {
   // Get the top-left position of the 3x3 box containing this cell
   const boxRow = Math.floor(row / 3) * 3;

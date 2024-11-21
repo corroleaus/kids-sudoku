@@ -1,6 +1,8 @@
 import React from 'react';
+import { CheckCircle2 } from 'lucide-react';
 
 interface SudokuCellProps {
+  isBoxComplete?: boolean;
   value: number;
   isInitial: boolean;
   isSelected: boolean;
@@ -15,6 +17,7 @@ const SudokuCell: React.FC<SudokuCellProps> = ({
   isSelected,
   isChecking,
   isValid,
+  isBoxComplete,
   onClick,
 }) => {
   const getBackgroundColor = () => {
@@ -36,7 +39,11 @@ const SudokuCell: React.FC<SudokuCellProps> = ({
       onClick={onClick}
       role="button"
     >
-      {value !== 0 && value}
+      {isBoxComplete ? (
+        <CheckCircle2 className="w-6 h-6 text-green-500 animate-bounce" />
+      ) : (
+        value !== 0 && value
+      )}
     </div>
   );
 };

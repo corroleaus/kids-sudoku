@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import SudokuCell from './SudokuCell';
+import { isBoxComplete } from '../utils/sudoku';
 
 interface SudokuGridProps {
   puzzle: number[][];
@@ -18,6 +19,24 @@ const SudokuGrid: React.FC<SudokuGridProps> = ({
   validCells,
   onCellClick,
 }) => {
+  const completedBoxes = useMemo(() => {
+    const completed = Array(9).fill(null).map(() => Array(9).fill(false));
+    
+    // Check each 3x3 box
+    for (let boxRow = 0; boxRow < 9; boxRow += 3) {
+      for (let boxCol = 0; boxCol < 9; boxCol += 3) {
+        const isComplete = isBoxComplete(puzzle, boxRow, boxCol);
+        // Mark all cells in this box
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            completed[boxRow + i][boxCol + j] = isComplete;
+          }
+        }
+      }
+    }
+    return completed;
+  }, [puzzle]);
+
   return (
     <div className="grid grid-cols-9 gap-0 border-2 border-gray-800">
       {puzzle.map((row, rowIndex) =>
@@ -42,6 +61,7 @@ const SudokuGrid: React.FC<SudokuGridProps> = ({
                 isSelected={isSelected}
                 isChecking={isChecking}
                 isValid={validCells[rowIndex][colIndex]}
+                isBoxComplete={completedBoxes[rowIndex][colIndex]}
                 onClick={() => onCellClick(rowIndex, colIndex)}
               />
             </div>
