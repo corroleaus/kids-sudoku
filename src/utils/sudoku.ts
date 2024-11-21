@@ -38,25 +38,11 @@ export const isValid = (grid: number[][], row: number, col: number, num: number)
   const originalValue = grid[row][col];
   grid[row][col] = 0;
 
-  // Check row
-  for (let x = 0; x < 9; x++) {
-    if (grid[row][x] === num) {
-      grid[row][col] = originalValue;
-      return false;
-    }
-  }
-
-  // Check column
-  for (let y = 0; y < 9; y++) {
-    if (grid[y][col] === num) {
-      grid[row][col] = originalValue;
-      return false;
-    }
-  }
-
-  // Check 3x3 box
+  // Only check within the current 3x3 box
   const boxRow = Math.floor(row / 3) * 3;
   const boxCol = Math.floor(col / 3) * 3;
+  
+  // Check if number exists in current 3x3 box
   for (let y = boxRow; y < boxRow + 3; y++) {
     for (let x = boxCol; x < boxCol + 3; x++) {
       if (grid[y][x] === num) {
