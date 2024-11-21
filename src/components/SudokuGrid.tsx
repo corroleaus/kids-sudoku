@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import SudokuCell from './SudokuCell';
+import CompletedBoxOverlay from './CompletedBoxOverlay';
 import { isBoxComplete } from '../utils/sudoku';
 
 interface SudokuGridProps {
@@ -50,20 +51,29 @@ const SudokuGrid: React.FC<SudokuGridProps> = ({
             rowIndex % 3 === 2 && rowIndex !== 8 ? 'border-b-2 border-b-gray-800' : '',
           ].join(' ');
 
+          // Only show overlay for top-left cell of each 3x3 box
+          const isBoxTopLeft = rowIndex % 3 === 0 && colIndex % 3 === 0;
+          const currentBoxComplete = isBoxTopLeft && isBoxComplete(puzzle, rowIndex, colIndex);
+
           return (
             <div
               key={`${rowIndex}-${colIndex}`}
-              className={`aspect-square ${borderClasses}`}
+              className={`aspect-square relative ${borderClasses}`}
             >
-              <SudokuCell
-                value={cell}
-                isInitial={isInitial}
-                isSelected={isSelected}
-                isChecking={isChecking}
-                isValid={validCells[rowIndex][colIndex]}
-                isBoxComplete={completedBoxes[rowIndex][colIndex]}
-                onClick={() => onCellClick(rowIndex, colIndex)}
-              />
+              {isBoxTopLeft && currentBoxComplete ? (
+                <div className="absolute inset-0 w-[300%] h-[300%] z-10">
+                  <CompletedBoxOverlay />
+                </div>
+              ) : (
+                <SudokuCell
+                  value={cell}
+                  isInitial={isInitial}
+                  isSelected={isSelected}
+                  isChecking={isChecking}
+                  isValid={validCells[rowIndex][colIndex]}
+                  onClick={() => onCellClick(rowIndex, colIndex)}
+                />
+              )}
             </div>
           );
         })
