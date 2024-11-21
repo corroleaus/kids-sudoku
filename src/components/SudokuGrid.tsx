@@ -10,6 +10,7 @@ interface SudokuGridProps {
   isChecking: boolean;
   validCells: boolean[][];
   onCellClick: (row: number, col: number) => void;
+  onCellChange?: (row: number, col: number, value: number) => void;
 }
 
 const SudokuGrid: React.FC<SudokuGridProps> = ({
@@ -54,6 +55,7 @@ const SudokuGrid: React.FC<SudokuGridProps> = ({
                   isChecking={isChecking}
                   isValid={validCells[rowIndex][colIndex]}
                   onClick={() => onCellClick(rowIndex, colIndex)}
+                  onChange={(value) => onCellChange?.(rowIndex, colIndex, value)}
                 />
               )}
             </div>

@@ -56,8 +56,22 @@ function App() {
   }, [selectedCell, handleNumberInput]);
 
   const handleCellClick = (row: number, col: number) => {
-    setSelectedCell([row, col]);
-    inputRef.current?.focus();
+    if (initialPuzzle[row][col] === 0) {
+      setSelectedCell([row, col]);
+      inputRef.current?.focus();
+    }
+  };
+
+  const handleCellChange = (row: number, col: number, value: number) => {
+    if (initialPuzzle[row][col] !== 0) return;
+    
+    const newPuzzle = puzzle.map(r => [...r]);
+    newPuzzle[row][col] = value;
+    setPuzzle(newPuzzle);
+
+    if (isSolved(newPuzzle)) {
+      setIsComplete(true);
+    }
   };
 
   const handleCheckProgress = () => {
@@ -116,6 +130,7 @@ function App() {
               isChecking={isChecking}
               validCells={validCells}
               onCellClick={handleCellClick}
+              onCellChange={handleCellChange}
             />
           </div>
         </div>
