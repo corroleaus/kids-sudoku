@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  .sudoku-cell {
+    @apply w-full h-full flex items-center justify-center text-xl font-medium;
+  }
+}
