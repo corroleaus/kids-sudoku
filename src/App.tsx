@@ -126,7 +126,7 @@ function App() {
             className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
           >
             <CheckCircle className="h-5 w-5" />
-            Kontrollera framsteg
+            Kontrollera
           </button>
           <button
             onClick={initializeGame}
