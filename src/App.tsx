@@ -126,14 +126,14 @@ function App() {
             className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
           >
             <CheckCircle className="h-5 w-5" />
-            Check Progress
+            Kontrollera framsteg
           </button>
           <button
             onClick={initializeGame}
             className="flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
           >
             <RotateCcw className="h-5 w-5" />
-            New Game
+            Nytt spel
           </button>
         </div>
 
@@ -149,7 +149,7 @@ function App() {
                 onClick={initializeGame}
                 className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
               >
-                Play Again
+                Spela igen
               </button>
             </div>
           </div>
