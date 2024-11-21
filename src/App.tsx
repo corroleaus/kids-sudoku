@@ -94,7 +94,7 @@ function App() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-blue-600 mb-2">
-            Kid's Sudoku
+            Sudoku för barn
             <Sparkles className="inline-block ml-2 h-8 w-8" />
           </h1>
           <p className="text-gray-600">Fyll i siffrorna 1-9 i varje rad, kolumn och ruta!</p>
@@ -138,11 +138,11 @@ function App() {
         </div>
 
         {isComplete && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20">
             <div className="bg-white rounded-xl p-8 text-center animate-bounce">
               <Trophy className="h-16 w-16 text-yellow-400 mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Grattis! 🎉
+                Bra Jobbat! 🎉
               </h2>
               <p className="text-gray-600 mb-6">Du klarade pusslet!</p>
               <button

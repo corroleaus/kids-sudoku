@@ -1,5 +1,4 @@
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
 
 interface SudokuCellProps {
   value: number;
@@ -16,7 +15,6 @@ const SudokuCell: React.FC<SudokuCellProps> = ({
   isSelected,
   isChecking,
   isValid,
-  isBoxComplete,
   onClick,
 }) => {
   const getBackgroundColor = () => {
