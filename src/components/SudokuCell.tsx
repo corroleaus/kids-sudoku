@@ -54,7 +54,7 @@ const SudokuCell: React.FC<SudokuCellProps> = ({
           className={`
             w-full h-full flex items-center justify-center
             border border-gray-200 cursor-pointer select-none
-            transition-colors duration-200 text-2xl
+            transition-colors duration-200 text-2xl sm:font-normal
             ${isInitial ? 'font-bold text-blue-600' : 'text-gray-700'}
             ${getBackgroundColor()}
           `}
@@ -73,7 +73,7 @@ const SudokuCell: React.FC<SudokuCellProps> = ({
           value={value === 0 ? '' : value}
           onChange={handleChange}
           className={`
-            w-full h-full text-center text-2xl
+            w-full h-full text-center text-2xl sm:font-normal
             border border-gray-200 select-none
             transition-colors duration-200
             ${getBackgroundColor()}
