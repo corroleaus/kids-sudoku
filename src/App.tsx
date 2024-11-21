@@ -97,7 +97,7 @@ function App() {
             Kid's Sudoku
             <Sparkles className="inline-block ml-2 h-8 w-8" />
           </h1>
-          <p className="text-gray-600">Fill in the numbers 1-9 in each row, column, and box!</p>
+          <p className="text-gray-600">Fyll i siffrorna 1-9 i varje rad, kolumn och ruta!</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
@@ -142,9 +142,9 @@ function App() {
             <div className="bg-white rounded-xl p-8 text-center animate-bounce">
               <Trophy className="h-16 w-16 text-yellow-400 mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Congratulations! 🎉
+                Grattis! 🎉
               </h2>
-              <p className="text-gray-600 mb-6">You solved the puzzle!</p>
+              <p className="text-gray-600 mb-6">Du klarade pusslet!</p>
               <button
                 onClick={initializeGame}
                 className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
