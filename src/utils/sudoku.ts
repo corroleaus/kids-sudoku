@@ -100,7 +100,28 @@ export const isSolved = (grid: number[][]): boolean => {
 };
 
 export const validateCell = (grid: number[][], row: number, col: number): boolean => {
-  const value = grid[row][col];
-  if (value === 0) return true; // Empty cells are neither correct nor incorrect
-  return isValid(grid, row, col, value);
+  // Get the top-left position of the 3x3 box containing this cell
+  const boxRow = Math.floor(row / 3) * 3;
+  const boxCol = Math.floor(col / 3) * 3;
+  
+  // Check if any number appears more than once in the 3x3 box
+  const numbers = new Set<number>();
+  const nonZeroCount = new Set<number>();
+  
+  for (let y = boxRow; y < boxRow + 3; y++) {
+    for (let x = boxCol; x < boxCol + 3; x++) {
+      const value = grid[y][x];
+      if (value !== 0) {
+        if (numbers.has(value)) {
+          // If we find a duplicate, the entire box is invalid
+          return false;
+        }
+        numbers.add(value);
+        nonZeroCount.add(value);
+      }
+    }
+  }
+  
+  // The box is valid if we haven't found any duplicates
+  return true;
 };

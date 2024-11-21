@@ -62,9 +62,25 @@ function App() {
 
   const handleCheckProgress = () => {
     setIsChecking(true);
-    const newValidCells = puzzle.map((row, rowIndex) =>
-      row.map((_, colIndex) => validateCell(puzzle, rowIndex, colIndex))
-    );
+    
+    // Initialize validation grid
+    const newValidCells = Array(9).fill(null).map(() => Array(9).fill(true));
+    
+    // Check each 3x3 box
+    for (let boxRow = 0; boxRow < 9; boxRow += 3) {
+      for (let boxCol = 0; boxCol < 9; boxCol += 3) {
+        // Get validation result for this box
+        const isBoxValid = validateCell(puzzle, boxRow, boxCol);
+        
+        // Apply the result to all cells in this box
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            newValidCells[boxRow + i][boxCol + j] = isBoxValid;
+          }
+        }
+      }
+    }
+    
     setValidCells(newValidCells);
 
     // Hide validation after 3 seconds
