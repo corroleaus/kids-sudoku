@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/kids-sudoku/',
-  plugins: [VitePWA({
+  base: '',
+  plugins: [react(), VitePWA({
     strategies: 'injectManifest',
     srcDir: 'src',
     filename: 'sw.ts',
