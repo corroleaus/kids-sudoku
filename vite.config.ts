@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react(), VitePWA({
     strategies: 'injectManifest',
     srcDir: 'src',
+    base: 'kids-sudoku',
     filename: 'sw.ts',
     registerType: 'prompt',
     injectRegister: false,
